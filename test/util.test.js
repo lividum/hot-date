@@ -1,4 +1,4 @@
-import Util from '../lib/util';
+import Util from '../src/util';
 import moment from 'moment-timezone';
 
 describe('Util Library', () => {

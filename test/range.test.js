@@ -1,5 +1,5 @@
-import Range from '../lib/range';
-import Util from '../lib/util';
+import Range from '../src/range';
+import Util from '../src/util';
 import moment from 'moment-timezone';
 
 describe('Range Library', () => {
