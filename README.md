@@ -12,5 +12,26 @@ Promise based queue with rich API.
 
 ```$ npm install hot-date --save```
 
+## Example
+
+```
+import DateUtil from 'hot-date';
+// ES5
+// var DateUtil = require('hot-date').Util;
+
+// create date from string
+const date = new DateUtil('2015-03-15');
+
+// convert to moment
+const mom = date.toMoment();
+console.log(mom.format('YYYY-MM-DD'))
+// 2015-03-15
+
+// convert to Javascript Date object
+const jsDate = date.toDate();
+console.log(jsDate instanceof Date);
+// true
+```
+
 ## License
 [MIT](https://github.com/lividum/hot-date/blob/master/LICENSE)
