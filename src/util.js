@@ -3,13 +3,15 @@ import Range from './range';
 
 export default class DateUtil {
 
-  constructor(input, format = 'YYYY-MM-DD', timezone = 'Asia/Jakarta') {
+  constructor(input, format = 'YYYY-MM-DD', timezone) {
     let mom;
 
     if (input instanceof DateUtil) mom = input.toMoment();
-    if (input instanceof Date) mom = moment(input).tz(timezone);
-    if (input instanceof moment) mom = input.tz(timezone);
+    if (input instanceof Date) mom = moment(input);
+    if (input instanceof moment) mom = input;
     if (typeof input === 'string') mom = DateUtil.fromString(input, format).toMoment();
+
+    if (timezone) mom.tz(timezone);
 
     this.mom = mom;
   }
@@ -75,7 +77,7 @@ export default class DateUtil {
     return new Range(start, end);
   }
 
-  static fromString(string, format = 'YYYY-MM-DD') {
+  static fromString(string, format = 'YYYY-MM-DD', timezone) {
     let mom;
 
     switch (string) {
@@ -86,6 +88,8 @@ export default class DateUtil {
       default:
         mom = moment(string, format);
     }
+
+    if (timezone) mom.tz(timezone);
 
     if (mom.isValid() === false) throw new Error('date is not valid');
 

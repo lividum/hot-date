@@ -1,7 +1,19 @@
-import Util from '../src/util';
+import RawUtil from '../src/util';
 import moment from 'moment-timezone';
 
 describe('Util Library', () => {
+  let Util;
+
+  before(() => {
+    class UtilClass extends RawUtil {
+      constructor(input, format = 'YYYY-MM-DD', timezone = 'Asia/Jakarta') {
+        super(input, format, timezone);
+      }
+    }
+
+    Util = UtilClass;
+  });
+
   it('able to parse string with default format', () => {
     const mom = new Util('2015-03-01').toMoment();
 
@@ -34,7 +46,7 @@ describe('Util Library', () => {
 
   it('able to parse string with custom format from static method', () => {
     const format = 'YYYY-MM-DD HH:mm';
-    const mom = Util.fromString('2015-03-01 15:03', format).toMoment();
+    const mom = Util.fromString('2015-03-01 15:03', format, 'Asia/Jakarta').toMoment();
 
     mom.format('z').should.be.equal('WIB');
     mom.format('DD').should.be.equal('01');
