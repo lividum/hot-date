@@ -6,8 +6,8 @@ describe('Util Library', () => {
 
   before(() => {
     class UtilClass extends RawUtil {
-      constructor(input, format = 'YYYY-MM-DD', timezone = 'Asia/Jakarta') {
-        super(input, format, timezone);
+      constructor(input, format = 'YYYY-MM-DD') {
+        super(input, format, 'Asia/Jakarta');
       }
     }
 
