@@ -11,7 +11,7 @@ export default class DateUtil {
     if (input instanceof moment) mom = input;
     if (typeof input === 'string') mom = DateUtil.fromString(input, format).toMoment();
 
-    if (timezone) mom.tz(timezone);
+    if (timezone) mom = mom.tz(timezone);
 
     this.mom = mom;
   }
