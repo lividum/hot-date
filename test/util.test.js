@@ -1,23 +1,10 @@
-import RawUtil from '../src/util';
+import Util from '../src/util';
 import moment from 'moment-timezone';
 
 describe('Util Library', () => {
-  let Util;
-
-  before(() => {
-    class UtilClass extends RawUtil {
-      constructor(input, format = 'YYYY-MM-DD') {
-        super(input, format, 'Asia/Jakarta');
-      }
-    }
-
-    Util = UtilClass;
-  });
-
   it('able to parse string with default format', () => {
     const mom = new Util('2015-03-01').toMoment();
 
-    mom.format('z').should.be.equal('WIB');
     mom.format('DD').should.be.equal('01');
     mom.format('MM').should.be.equal('03');
     mom.format('YYYY').should.be.equal('2015');
@@ -26,7 +13,6 @@ describe('Util Library', () => {
   it('able to parse string with default format but different non-alphanumberic ', () => {
     const mom = new Util('2015/03/01').toMoment();
 
-    mom.format('z').should.be.equal('WIB');
     mom.format('DD').should.be.equal('01');
     mom.format('MM').should.be.equal('03');
     mom.format('YYYY').should.be.equal('2015');
@@ -36,19 +22,6 @@ describe('Util Library', () => {
     const format = 'YYYY-MM-DD HH:mm';
     const mom = new Util('2015-03-01 15:03', format).toMoment();
 
-    mom.format('z').should.be.equal('WIB');
-    mom.format('DD').should.be.equal('01');
-    mom.format('MM').should.be.equal('03');
-    mom.format('YYYY').should.be.equal('2015');
-    mom.format('HH').should.be.equal('15');
-    mom.format('mm').should.be.equal('03');
-  });
-
-  it('able to parse string with custom format from static method', () => {
-    const format = 'YYYY-MM-DD HH:mm';
-    const mom = Util.fromString('2015-03-01 15:03', format, 'Asia/Jakarta').toMoment();
-
-    mom.format('z').should.be.equal('WIB');
     mom.format('DD').should.be.equal('01');
     mom.format('MM').should.be.equal('03');
     mom.format('YYYY').should.be.equal('2015');
@@ -108,7 +81,6 @@ describe('Util Library', () => {
     mom.format('HH').should.equal('00');
     mom.format('mm').should.equal('00');
     mom.format('s').should.equal('0');
-    mom.format('z').should.equal('WIB');
 
     // invalid moment
     mom = date.startOf('just string').toMoment();
@@ -119,7 +91,6 @@ describe('Util Library', () => {
     mom.format('HH').should.equal('15');
     mom.format('mm').should.equal('09');
     mom.format('s').should.equal('0');
-    mom.format('z').should.equal('WIB');
   });
 
   it('able to get end of time', () => {
@@ -135,7 +106,6 @@ describe('Util Library', () => {
     mom.format('HH').should.equal('23');
     mom.format('mm').should.equal('59');
     mom.format('s').should.equal('59');
-    mom.format('z').should.equal('WIB');
 
     // invalid moment
     mom = date.endOf('just string').toMoment();
@@ -146,7 +116,6 @@ describe('Util Library', () => {
     mom.format('HH').should.equal('15');
     mom.format('mm').should.equal('09');
     mom.format('s').should.equal('0');
-    mom.format('z').should.equal('WIB');
   });
 
   describe('Pre defined string', () => {
@@ -155,7 +124,6 @@ describe('Util Library', () => {
 
       const mom = new Util('yesterday').toMoment();
 
-      mom.format('z').should.be.equal('WIB');
       mom.format('DD').should.be.equal(now.add(-1, 'd').format('DD'));
       mom.format('MM').should.be.equal(now.format('MM'));
       mom.format('YYYY').should.be.equal(now.format('YYYY'));

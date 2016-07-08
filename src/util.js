@@ -89,11 +89,11 @@ export default class DateUtil {
         mom = moment(string, format);
     }
 
-    if (timezone) mom.tz(timezone);
+    if (timezone) mom = mom.tz(timezone);
 
     if (mom.isValid() === false) throw new Error('date is not valid');
 
-    return new DateUtil(mom);
+    return new DateUtil(mom, format, timezone);
   }
 
   static validate(d) {
