@@ -1,6 +1,6 @@
 import Util from '../src/util';
 
-describe('Util Timezone Library', () => {
+describe('Util Timezone Functionality', () => {
   it('able to parse string with default format and custom timezone', () => {
     const mom = new Util('2015-03-01', { timezone: 'Asia/Jakarta' }).toMoment();
 

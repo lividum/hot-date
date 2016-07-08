@@ -107,8 +107,15 @@ describe('Util Library', () => {
 
     const date = new Util('2015-02-03 15:09');
 
-    mom = date.endOf('Y').toMoment();
+    mom = date.toMoment();
+    mom.format('YYYY').should.equal('2015');
+    mom.format('MM').should.equal('02');
+    mom.format('DD').should.equal('03');
+    mom.format('HH').should.equal('15');
+    mom.format('mm').should.equal('09');
+    mom.format('s').should.equal('0');
 
+    mom = date.endOf('Y').toMoment();
     mom.format('YYYY').should.equal('2015');
     mom.format('MM').should.equal('12');
     mom.format('DD').should.equal('31');
@@ -118,7 +125,6 @@ describe('Util Library', () => {
 
     // invalid moment
     mom = date.endOf('just string').toMoment();
-
     mom.format('YYYY').should.equal('2015');
     mom.format('MM').should.equal('02');
     mom.format('DD').should.equal('03');
