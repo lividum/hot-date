@@ -3,7 +3,7 @@ import Range from './range';
 
 export default class DateUtil {
 
-  constructor(input, format = 'YYYY-MM-DD', timezone) {
+  constructor(input, { format, timezone } = {}) {
     let mom;
 
     if (input instanceof DateUtil) mom = input.toMoment();
@@ -77,7 +77,7 @@ export default class DateUtil {
     return new Range(start, end);
   }
 
-  static fromString(string, format = 'YYYY-MM-DD', timezone) {
+  static fromString(string, format = 'YYYY-MM-DD HH:mm:ss', timezone) {
     let mom;
 
     switch (string) {

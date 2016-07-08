@@ -20,7 +20,7 @@ describe('Util Library', () => {
 
   it('able to parse string with custom format', () => {
     const format = 'YYYY-MM-DD HH:mm';
-    const mom = new Util('2015-03-01 15:03', format).toMoment();
+    const mom = new Util('2015-03-01 15:03', { format }).toMoment();
 
     mom.format('DD').should.be.equal('01');
     mom.format('MM').should.be.equal('03');
@@ -72,7 +72,16 @@ describe('Util Library', () => {
   it('able to get start of time', () => {
     let mom;
 
-    const date = new Util('2015-02-03 15:09', 'YYYY-MM-DD HH:mm');
+    const date = new Util('2015-02-03 15:09');
+
+    mom = date.toMoment();
+    mom.format('YYYY').should.equal('2015');
+    mom.format('MM').should.equal('02');
+    mom.format('DD').should.equal('03');
+    mom.format('HH').should.equal('15');
+    mom.format('mm').should.equal('09');
+    mom.format('s').should.equal('0');
+
     mom = date.startOf('Y').toMoment();
 
     mom.format('YYYY').should.equal('2015');
@@ -96,7 +105,7 @@ describe('Util Library', () => {
   it('able to get end of time', () => {
     let mom;
 
-    const date = new Util('2015-02-03 15:09', 'YYYY-MM-DD HH:mm');
+    const date = new Util('2015-02-03 15:09');
 
     mom = date.endOf('Y').toMoment();
 
