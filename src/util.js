@@ -27,9 +27,7 @@ export default class DateUtil {
 
       if (DateUtil.validate(newDate) === false) throw new Error('new date is not valid');
 
-      this.mom = moment(newDate);
-
-      result = this;
+      result = new DateUtil(newDate);
     } else {
       result = date;
     }
@@ -45,9 +43,7 @@ export default class DateUtil {
 
       if (newMom.isValid() !== true) throw new Error('new moment object is not valid');
 
-      this.mom = newMom;
-
-      result = this;
+      result = new DateUtil(newMom);
     } else {
       result = this.mom.clone();
     }
