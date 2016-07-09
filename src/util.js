@@ -3,6 +3,10 @@ import Range from './range';
 
 export default class DateUtil {
 
+  get timezone() {
+    return null;
+  }
+
   constructor(input, { format, timezone } = {}) {
     let mom;
 
@@ -11,7 +15,9 @@ export default class DateUtil {
     if (input instanceof moment) mom = input;
     if (typeof input === 'string') mom = DateUtil.fromString(input, format).toMoment();
 
-    if (timezone) mom = mom.tz(timezone);
+    // check timezone
+    const tz = timezone || this.timezone;
+    if (tz) mom = mom.tz(tz);
 
     this.mom = mom;
   }

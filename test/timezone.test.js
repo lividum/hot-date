@@ -9,4 +9,18 @@ describe('Util Timezone Functionality', () => {
     mom.format('YYYY').should.be.equal('2015');
     mom.format('z').should.be.equal('WIB');
   });
+
+  it('able to set default timezone', () => {
+    class NewUtil extends Util {
+      get timezone() {
+        return 'Asia/Jakarta';
+      }
+    }
+    const mom = new NewUtil('2015-03-01').toMoment();
+
+    mom.format('DD').should.be.equal('01');
+    mom.format('MM').should.be.equal('03');
+    mom.format('YYYY').should.be.equal('2015');
+    mom.format('z').should.be.equal('WIB');
+  });
 });
